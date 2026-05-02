@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Clean Service — فيوتشر كلين سيرفيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/home.css">
+</head>
+<body>
+<script src="assets/i18n.js"></script>
+<script src="assets/components.js"></script>
+
+<main id="main"></main>
+
+<script>
+window.FC.applyLang();
+const t = window.FC.t.bind(window.FC);
+const lang = window.FC.lang;
+const ar = lang === "ar";
+const services = window.FC.services;
+
+const main = document.getElementById("main");
+
+/* ---------- HERO ---------- */
+const heroHTML = `
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <span class="tag dot">${t("hero.eyebrow")}</span>
+        <h1>${ar
+          ? `نُعيد تعريف معنى <em>النظافة</em> في كل مكان نخدمه.`
+          : `Redefining what <em>clean</em> feels like — everywhere we serve.`}</h1>
+        <p class="lead">${t("hero.sub")}</p>
+        <div class="hero-actions">
+          <a class="btn btn-accent" href="contact.html">${t("hero.ctaPrimary")} <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="services.html">${t("hero.ctaSecondary")}</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="v">${t("hero.stat1")}</span><span class="l">${ar ? "ثقة بُنيت على النتائج" : "Trust built on results"}</span></div>
+          <div class="hero-stat"><span class="v">${t("hero.stat2")}</span><span class="l">${ar ? "في السوق المصري" : "in the Egyptian market"}</span></div>
+          <div class="hero-stat"><span class="v">${t("hero.stat3")}</span><span class="l">${ar ? "للمنازل والشركات" : "homes & businesses"}</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <img src="${window.FC.imgUrl("slider/who_we_are.jpg")}" alt="${ar ? "فريق فيوتشر كلين أثناء العمل" : "Future Clean team at work"}" onerror="this.style.display='none'; this.parentElement.classList.add('ph');">
+        <div class="hero-badge"><span class="dot"></span><span class="text">${ar ? "متاحون الآن" : "Available now"} · 24/7</span></div>
+        <div class="hero-card-floater">
+          <div class="avatars">
+            <img src="${window.FC.imgUrl("testimonials/user1.jpg")}" alt="" onerror="this.style.background='#0f766e'; this.removeAttribute('src');">
+            <img src="${window.FC.imgUrl("testimonials/user2.jpg")}" alt="" onerror="this.style.background='#10b981'; this.removeAttribute('src');">
+            <img src="${window.FC.imgUrl("testimonials/user7.jpg")}" alt="" onerror="this.style.background='#34d399'; this.removeAttribute('src');">
+          </div>
+          <div class="text">
+            <strong>${ar ? "+٤٨٠٠ عميل" : "4,800+ clients"}</strong>
+            ${ar ? "قيّمونا ٤٫٩ من ٥" : "rated us 4.9 / 5"}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      ${[...Array(2)].map(() => (ar
+        ? `<span>تعقيم معتمد</span><span>عمالة مدرّبة</span><span>أدوات حديثة</span><span>متاحون ٢٤/٧</span><span>ضمان نتائج</span><span>أسعار شفافة</span><span>مواد آمنة</span><span>متابعة بعد الخدمة</span>`
+        : `<span>Certified disinfection</span><span>Trained staff</span><span>Modern tools</span><span>Available 24/7</span><span>Results guaranteed</span><span>Transparent pricing</span><span>Safe products</span><span>Post-service follow-up</span>`
+      )).join("")}
+    </div>
+  </div>
+</section>`;
+
+/* ---------- COUNTERS ---------- */
+const counters = t("counters.items");
+const countersHTML = `
+<section class="section-tight">
+  <div class="container">
+    <div class="counters reveal">
+      ${counters.map(c => `
+        <div>
+          <div class="num"><span data-counter="${c.n}">0</span><span class="suffix">${c.suffix}</span></div>
+          <div class="lab">${c.label}</div>
+        </div>
+      `).join("")}
+    </div>
+  </div>
+</section>`;
+
+/* ---------- SERVICES ---------- */
+const tabKeys = ["homes", "companies", "special"];
+const renderServiceCards = (key) => services[key].map(s => `
+  <a class="service-card" href="services.html#${s.id}">
+    <div class="img">
+      <img src="${window.FC.imgUrl(`services/${key}/${s.cdn}/${s.cdn}1.jpg`)}" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('ph'); this.parentElement.dataset.label='${s.cdn}';">
+      <span class="icon-pill">${ar ? t(`services.tabs.${key}`) : t(`services.tabs.${key}`)}</span>
+    </div>
+    <div class="body">
+      <h3>${ar ? s.ar : s.en}</h3>
+      <p>${ar ? s.arDesc : s.enDesc}</p>
+      <span class="read">${t("services.readMore")} <span class="arrow">→</span></span>
+    </div>
+  </a>
+`).join("");
+
+const servicesHTML = `
+<section class="section">
+  <div class="container">
+    <div style="display:flex; align-items:end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:48px;">
+      <div class="reveal" style="max-width:680px">
+        <span class="eyebrow">${t("services.eyebrow")}</span>
+        <h2 style="margin-top:14px">${t("services.title")}</h2>
+        <p class="lead" style="margin-top:14px">${t("services.sub")}</p>
+      </div>
+      <a href="services.html" class="btn btn-ghost reveal">${ar ? "كل الخدمات" : "All services"} <span class="arrow">→</span></a>
+    </div>
+    <div class="services-shell">
+      <div class="tabs" role="tablist">
+        ${tabKeys.map((k, i) => `
+          <button data-tab="${k}" class="${i === 0 ? "active" : ""}">
+            <span>${t(`services.tabs.${k}`)}</span>
+            <span class="count">${services[k].length}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="service-grid" id="serviceGrid">
+        ${renderServiceCards("homes")}
+      </div>
+    </div>
+  </div>
+</section>`;
+
+/* ---------- WHY US ---------- */
+const whyIcons = ["zap","tag","users","clock","shield","refresh"];
+const whyIconSvg = {
+  zap:    `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  tag:    `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
+  users:  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  clock:  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  shield: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+  refresh:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
+};
+const whyHTML = `
+<section class="section" style="background:linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);">
+  <div class="container">
+    <div style="text-align:center; max-width:680px; margin:0 auto 48px;" class="reveal">
+      <span class="eyebrow" style="justify-content:center; display:inline-flex">${t("why.eyebrow")}</span>
+      <h2 style="margin-top:14px">${t("why.title")}</h2>
+      <p class="lead" style="margin:14px auto 0">${t("why.sub")}</p>
+    </div>
+    <div class="why-grid reveal">
+      ${t("why.items").map((it, i) => `
+        <div class="why-cell">
+          <div class="ico">${whyIconSvg[whyIcons[i]]}</div>
+          <h3>${it.t}</h3>
+          <p>${it.d}</p>
+        </div>
+      `).join("")}
+    </div>
+  </div>
+</section>`;
+
+/* ---------- PROCESS ---------- */
+const processHTML = `
+<section class="section">
+  <div class="container">
+    <div style="margin-bottom:40px; max-width:680px;" class="reveal">
+      <span class="eyebrow">${t("process.eyebrow")}</span>
+      <h2 style="margin-top:14px">${t("process.title")}</h2>
+    </div>
+    <div class="process-grid">
+      ${t("process.items").map(it => `
+        <div class="process-card reveal">
+          <div class="num">${it.n}</div>
+          <h3>${it.t}</h3>
+          <p>${it.d}</p>
+        </div>
+      `).join("")}
+    </div>
+  </div>
+</section>`;
+
+/* ---------- TESTIMONIALS ---------- */
+const tItems = t("testimonials.items");
+const testimonialsHTML = `
+<section class="section" style="background:var(--bg-soft)">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap; margin-bottom:36px;" class="reveal">
+      <div style="max-width:580px">
+        <span class="eyebrow">${t("testimonials.eyebrow")}</span>
+        <h2 style="margin-top:14px">${t("testimonials.title")}</h2>
+        <p class="lead" style="margin-top:14px">${t("testimonials.sub")}</p>
+      </div>
+    </div>
+    <div class="t-carousel">
+      <div class="t-track" id="tTrack">
+        ${tItems.map((it, i) => `
+          <article class="t-card">
+            <div class="stars">${"★".repeat(it.stars)}${"☆".repeat(5 - it.stars)}</div>
+            <p class="body">"${it.body}"</p>
+            <div class="who">
+              <img src="${window.FC.imgUrl(`testimonials/user${(i % 8) + 1}.jpg`)}" alt="" onerror="this.style.background='var(--accent-soft)'; this.removeAttribute('src');">
+              <div>
+                <div class="n">${it.name}</div>
+                <div class="r">${it.role}</div>
+              </div>
+            </div>
+          </article>
+        `).join("")}
+      </div>
+      <div class="t-controls">
+        <div class="t-dots" id="tDots"></div>
+        <div class="t-arrows">
+          <button class="t-arrow" id="tPrev" aria-label="prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="t-arrow" id="tNext" aria-label="next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+/* ---------- PARTNERS ---------- */
+const partnersHTML = `
+<section class="section-tight">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:32px; max-width:640px; margin-inline:auto" class="reveal">
+      <span class="eyebrow" style="justify-content:center; display:inline-flex">${t("partners.eyebrow")}</span>
+      <h2 style="margin-top:14px; font-size:clamp(24px,2.6vw,32px)">${t("partners.title")}</h2>
+    </div>
+    <div class="partners reveal">
+      ${t("partners.list").map(p => `<div class="partner">${p}</div>`).join("")}
+    </div>
+  </div>
+</section>`;
+
+/* ---------- FAQ ---------- */
+const faqHTML = `
+<section class="section">
+  <div class="container" style="max-width:920px">
+    <div style="text-align:center; margin-bottom:40px;" class="reveal">
+      <span class="eyebrow" style="justify-content:center; display:inline-flex">${t("faq.eyebrow")}</span>
+      <h2 style="margin-top:14px">${t("faq.title")}</h2>
+    </div>
+    <div id="faq">
+      ${t("faq.items").map((it, i) => `
+        <div class="accordion-item ${i === 0 ? "open" : ""}">
+          <button class="accordion-trigger">
+            <span>${it.q}</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content" style="${i === 0 ? "max-height:300px" : ""}"><div>${it.a}</div></div>
+        </div>
+      `).join("")}
+    </div>
+  </div>
+</section>`;
+
+/* ---------- CTA ---------- */
+const ctaHTML = `
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <span class="tag dot" style="background:rgba(255,255,255,.1); color:#fff">${ar ? "احجز الآن" : "Book now"}</span>
+        <h2 style="margin:18px 0 14px">${t("bookCta.title")}</h2>
+        <p>${t("bookCta.sub")}</p>
+        <div class="row" style="margin-top:24px">
+          <a class="btn btn-accent" href="tel:+201100618568"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg> +20 110 061 8568</a>
+          <a class="btn btn-ghost" href="contact.html">${t("bookCta.secondary")}</a>
+        </div>
+      </div>
+      <div class="cta-illus">
+        <div class="row">
+          <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><div class="label">${ar ? "معاينة مجانية" : "Free survey"}</div><div class="sub">${ar ? "زيارة وعرض سعر بدون التزام" : "Visit + quote, no obligation"}</div></div>
+        </div>
+        <div class="row">
+          <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><div class="label">${ar ? "ضمان متابعة" : "Follow-up guarantee"}</div><div class="sub">${ar ? "أسبوعان من الضمان مجانًا" : "Two-week guarantee included"}</div></div>
+        </div>
+        <div class="row">
+          <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><div class="label">${ar ? "متاحون اليوم" : "Available today"}</div><div class="sub">${ar ? "حجز ٢٤/٧ بما في ذلك العطلات" : "Book 24/7, holidays included"}</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+main.innerHTML = heroHTML + countersHTML + servicesHTML + whyHTML + processHTML + testimonialsHTML + partnersHTML + faqHTML + ctaHTML;
+
+window.FC.mountChrome("home");
+
+/* ----- service tabs ----- */
+document.querySelectorAll(".tabs button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const grid = document.getElementById("serviceGrid");
+    grid.style.opacity = "0";
+    setTimeout(() => {
+      grid.innerHTML = renderServiceCards(btn.dataset.tab);
+      grid.style.opacity = "1";
+    }, 150);
+  });
+});
+
+/* ----- testimonials carousel ----- */
+const track = document.getElementById("tTrack");
+const dotsWrap = document.getElementById("tDots");
+const tCount = tItems.length;
+const perView = window.innerWidth <= 640 ? 1 : (window.innerWidth <= 980 ? 2 : 3);
+const pages = Math.max(1, Math.ceil(tCount / perView));
+let cur = 0;
+const renderDots = () => {
+  dotsWrap.innerHTML = "";
+  for (let i = 0; i < pages; i++) {
+    const d = document.createElement("button");
+    d.className = "t-dot" + (i === cur ? " active" : "");
+    d.addEventListener("click", () => goTo(i));
+    dotsWrap.appendChild(d);
+  }
+};
+const goTo = (i) => {
+  cur = (i + pages) % pages;
+  const w = track.clientWidth + 20;
+  track.scrollTo({ left: (lang === "ar" ? -1 : 1) * cur * w, behavior: "smooth" });
+  renderDots();
+};
+document.getElementById("tNext").addEventListener("click", () => goTo(cur + 1));
+document.getElementById("tPrev").addEventListener("click", () => goTo(cur - 1));
+renderDots();
+setInterval(() => goTo(cur + 1), 8000);
+
+/* ----- accordion ----- */
+document.querySelectorAll("#faq .accordion-trigger").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.parentElement;
+    const c = item.querySelector(".accordion-content");
+    const open = item.classList.toggle("open");
+    if (open) {
+      c.style.maxHeight = c.scrollHeight + "px";
+    } else {
+      c.style.maxHeight = "0";
+    }
+  });
+});
+
+/* ----- transitions ----- */
+document.getElementById("serviceGrid").style.transition = "opacity .2s";
+
+window.FC.observeReveal();
+window.FC.animateCounters();
+</script>
+</body>
+</html>

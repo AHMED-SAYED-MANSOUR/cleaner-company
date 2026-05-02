@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أعمالنا — Future Clean</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/home.css">
+<style>
+  .filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px;
+  }
+  .filter-bar button {
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line-2);
+    background: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink-2);
+    transition: all .15s;
+  }
+  .filter-bar button:hover { border-color: var(--ink); }
+  .filter-bar button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 180px;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 980px) { .gallery-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 160px; } }
+  @media (max-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; gap: 10px; } }
+  .gal-item {
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-soft);
+    cursor: pointer;
+    position: relative;
+    transition: transform .25s;
+  }
+  .gal-item:hover { transform: translateY(-3px); }
+  .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .gal-item:hover img { transform: scale(1.06); }
+  .gal-item .label {
+    position: absolute; inset-block-end: 0; inset-inline-start: 0; right: 0;
+    padding: 12px 16px;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,.7));
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .gal-item:hover .label { opacity: 1; }
+  /* sizes */
+  .gal-w-3 { grid-column: span 3; }
+  .gal-w-4 { grid-column: span 4; }
+  .gal-w-6 { grid-column: span 6; }
+  .gal-h-2 { grid-row: span 2; }
+  @media (max-width: 980px) {
+    .gal-w-3 { grid-column: span 2; }
+    .gal-w-4 { grid-column: span 3; }
+    .gal-w-6 { grid-column: span 3; }
+  }
+  @media (max-width: 640px) {
+    .gal-w-3, .gal-w-4, .gal-w-6 { grid-column: span 1; }
+    .gal-h-2 { grid-row: span 1; }
+  }
+  /* lightbox */
+  .lightbox { position: fixed; inset: 0; background: rgba(11,20,16,.92); display: none; place-items: center; z-index: 100; padding: 24px; }
+  .lightbox.open { display: grid; }
+  .lightbox-img { max-width: min(90vw, 1100px); max-height: 88vh; border-radius: var(--radius); }
+  .lightbox-close, .lb-nav { position: absolute; background: rgba(255,255,255,.1); color: #fff; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; }
+  .lightbox-close { top: 24px; right: 24px; }
+  .lb-prev { inset-inline-start: 24px; top: 50%; transform: translateY(-50%); }
+  .lb-next { inset-inline-end: 24px; top: 50%; transform: translateY(-50%); }
+  html[dir="rtl"] .lb-prev svg, html[dir="rtl"] .lb-next svg { transform: scaleX(-1); }
+  .lb-counter { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); color: #fff; font-family: var(--font-mono); font-size: 13px; background: rgba(255,255,255,.1); padding: 8px 16px; border-radius: var(--radius-pill); }
+</style>
+</head>
+<body>
+<script src="assets/i18n.js"></script>
+<script src="assets/components.js"></script>
+<main id="main"></main>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <button class="lb-nav lb-prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="lb-nav lb-next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <img class="lightbox-img" alt="">
+  <div class="lb-counter"></div>
+</div>
+<script>
+window.FC.applyLang();
+const t = window.FC.t.bind(window.FC);
+const lang = window.FC.lang;
+const ar = lang === "ar";
+const main = document.getElementById("main");
+const cats = t("works.categories");
+const items = window.FC.gallery;
+
+const sizes = ["gal-w-6 gal-h-2", "gal-w-3", "gal-w-3", "gal-w-4", "gal-w-4 gal-h-2", "gal-w-4", "gal-w-3", "gal-w-3", "gal-w-6", "gal-w-3", "gal-w-3", "gal-w-6", "gal-w-4", "gal-w-4", "gal-w-4", "gal-w-6 gal-h-2", "gal-w-3", "gal-w-3"];
+
+const renderItems = (filter) => items.map((it, i) => {
+  if (filter !== "all" && it.cat !== filter) return "";
+  const sz = sizes[i % sizes.length];
+  return `
+    <div class="gal-item ${sz}" data-cat="${it.cat}" data-src="${it.src}" data-i="${i}">
+      <img src="${window.FC.imgUrl(it.src)}" alt="${ar ? it.ar : it.en}" onerror="this.style.display='none'; this.parentElement.classList.add('ph');">
+      <div class="label">${ar ? it.ar : it.en}</div>
+    </div>
+  `;
+}).join("");
+
+main.innerHTML = `
+  <section class="container page-intro">
+    <div class="reveal">
+      <span class="eyebrow">${t("works.eyebrow")}</span>
+      <h1 style="margin-top:14px">${t("works.title")}</h1>
+      <p class="lead" style="margin-top:18px">${t("works.sub")}</p>
+      <div class="filter-bar" id="filterBar">
+        ${Object.entries(cats).map(([k, v], i) => `<button data-cat="${k}" class="${i === 0 ? "active" : ""}">${v}</button>`).join("")}
+      </div>
+    </div>
+  </section>
+  <section class="container" style="padding-bottom:96px">
+    <div class="gallery-grid" id="grid">${renderItems("all")}</div>
+  </section>
+  <section class="container section-tight">
+    <div class="cta-banner reveal">
+      <div>
+        <h2 style="margin-bottom:14px">${t("bookCta.title")}</h2>
+        <p>${t("bookCta.sub")}</p>
+        <div class="row" style="margin-top:24px">
+          <a class="btn btn-accent" href="contact.html">${t("hero.ctaPrimary")} <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="cta-illus"><div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="label">${ar ? "ضمان متابعة" : "Follow-up guarantee"}</div></div></div></div>
+    </div>
+  </section>
+`;
+
+window.FC.mountChrome("works");
+window.FC.observeReveal();
+
+const grid = document.getElementById("grid");
+document.querySelectorAll("#filterBar button").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll("#filterBar button").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    grid.style.opacity = "0";
+    setTimeout(() => { grid.innerHTML = renderItems(b.dataset.cat); attachLB(); grid.style.opacity = "1"; }, 200);
+  });
+});
+grid.style.transition = "opacity .25s";
+
+/* lightbox */
+const lb = document.getElementById("lightbox");
+const lbImg = lb.querySelector(".lightbox-img");
+const lbCounter = lb.querySelector(".lb-counter");
+let curList = [], curIdx = 0;
+const renderLB = () => { lbImg.src = window.FC.imgUrl(curList[curIdx].src); lbCounter.textContent = `${curIdx + 1} / ${curList.length}`; };
+const open = (list, i) => { curList = list; curIdx = i; lb.classList.add("open"); renderLB(); };
+lb.addEventListener("click", (e) => { if (e.target === lb) lb.classList.remove("open"); });
+lb.querySelector(".lightbox-close").addEventListener("click", () => lb.classList.remove("open"));
+lb.querySelector(".lb-prev").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); });
+lb.querySelector(".lb-next").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx + 1) % curList.length; renderLB(); });
+document.addEventListener("keydown", (e) => {
+  if (!lb.classList.contains("open")) return;
+  if (e.key === "Escape") lb.classList.remove("open");
+  if (e.key === "ArrowLeft") { curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); }
+  if (e.key === "ArrowRight") { curIdx = (curIdx + 1) % curList.length; renderLB(); }
+});
+function attachLB() {
+  const visible = [...document.querySelectorAll(".gal-item")].map(el => ({ src: el.dataset.src, cat: el.dataset.cat }));
+  document.querySelectorAll(".gal-item").forEach((el, i) => {
+    el.addEventListener("click", () => open(visible, i));
+  });
+}
+attachLB();
+</script>
+</body>
+</html>
