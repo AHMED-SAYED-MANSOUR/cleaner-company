@@ -9,6 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <link rel="stylesheet" href="assets/home.css">
+<link rel="stylesheet" href="assets/animations.css">
+<link rel="stylesheet" href="assets/mobile-fixes.css">
 <style>
   .filter-bar {
     display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px;
@@ -85,6 +87,7 @@
 <body>
 <script src="assets/i18n.js"></script>
 <script src="assets/components.js"></script>
+<script src="assets/animations.js"></script>
 <main id="main"></main>
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" aria-label="close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
@@ -117,7 +120,7 @@ const renderItems = (filter) => items.map((it, i) => {
 
 main.innerHTML = `
   <section class="container page-intro">
-    <div class="reveal">
+    <div data-anim="up">
       <span class="eyebrow">${t("works.eyebrow")}</span>
       <h1 style="margin-top:14px">${t("works.title")}</h1>
       <p class="lead" style="margin-top:18px">${t("works.sub")}</p>
@@ -127,10 +130,10 @@ main.innerHTML = `
     </div>
   </section>
   <section class="container" style="padding-bottom:96px">
-    <div class="gallery-grid" id="grid">${renderItems("all")}</div>
+    <div class="gallery-grid" id="grid" data-stagger="60">${renderItems("all")}</div>
   </section>
   <section class="container section-tight">
-    <div class="cta-banner reveal">
+    <div class="cta-banner" data-anim="up">
       <div>
         <h2 style="margin-bottom:14px">${t("bookCta.title")}</h2>
         <p>${t("bookCta.sub")}</p>
@@ -145,6 +148,7 @@ main.innerHTML = `
 
 window.FC.mountChrome("works");
 window.FC.observeReveal();
+window.FC.boot();
 
 const grid = document.getElementById("grid");
 document.querySelectorAll("#filterBar button").forEach(b => {

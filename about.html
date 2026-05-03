@@ -9,6 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <link rel="stylesheet" href="assets/home.css">
+<link rel="stylesheet" href="assets/animations.css">
+<link rel="stylesheet" href="assets/mobile-fixes.css">
 <style>
   .about-hero {
     display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px;
@@ -97,6 +99,7 @@
 <body>
 <script src="assets/i18n.js"></script>
 <script src="assets/components.js"></script>
+<script src="assets/animations.js"></script>
 <main id="main"></main>
 <script>
 window.FC.applyLang();
@@ -108,7 +111,7 @@ const main = document.getElementById("main");
 const html = `
 <section class="container">
   <div class="about-hero">
-    <div class="reveal">
+    <div data-anim="up">
       <span class="eyebrow">${t("about.eyebrow")}</span>
       <h1 style="margin-top:14px">${t("about.title")}</h1>
       <p class="lead" style="margin-top:20px">${t("about.sub")}</p>
@@ -117,14 +120,14 @@ const html = `
         <a href="services.html" class="btn btn-ghost">${t("hero.ctaSecondary")}</a>
       </div>
     </div>
-    <div class="visual reveal">
+    <div class="visual" data-anim="up">
       <img src="${window.FC.imgUrl("slider/who_we_are.jpg")}" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('ph');">
     </div>
   </div>
 </section>
 
 <section class="container section-tight">
-  <div class="counters reveal">
+  <div class="counters" data-stagger="120">
     ${t("counters.items").map(c => `
       <div>
         <div class="num"><span data-counter="${c.n}">0</span><span class="suffix">${c.suffix}</span></div>
@@ -135,11 +138,11 @@ const html = `
 </section>
 
 <section class="container section">
-  <div style="text-align:center; max-width:680px; margin:0 auto 12px" class="reveal">
+  <div style="text-align:center; max-width:680px; margin:0 auto 12px" data-anim="up">
     <span class="eyebrow" style="justify-content:center; display:inline-flex">${ar ? "ما نؤمن به" : "What we stand for"}</span>
     <h2 style="margin-top:14px">${ar ? "مهمة، رؤية، وقيم تقودنا" : "Mission, vision, and values that guide us"}</h2>
   </div>
-  <div class="pillars reveal">
+  <div class="pillars" data-stagger="140">
     <div class="pillar">
       <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
       <h3>${t("about.missionT")}</h3>
@@ -159,13 +162,13 @@ const html = `
 </section>
 
 <section class="container section" style="background:var(--bg-soft); border-radius:var(--radius-lg); padding:72px 48px;">
-  <div style="max-width:680px; margin-bottom:24px" class="reveal">
+  <div style="max-width:680px; margin-bottom:24px" data-anim="up">
     <span class="eyebrow">${t("about.timelineTitle")}</span>
     <h2 style="margin-top:14px">${ar ? "رحلة من ٢٠١٨ إلى اليوم" : "Our journey from 2018 to today"}</h2>
   </div>
   <div class="timeline">
     ${t("about.timeline").map(it => `
-      <div class="tl-item reveal">
+      <div class="tl-item" data-anim="left">
         <div class="tl-year">${it.y}</div>
         <div class="tl-content">
           <h3>${it.t}</h3>
@@ -177,7 +180,7 @@ const html = `
 </section>
 
 <section class="container section-tight">
-  <div class="cta-banner reveal">
+  <div class="cta-banner" data-anim="up">
     <div>
       <h2 style="margin-bottom:14px">${t("bookCta.title")}</h2>
       <p>${t("bookCta.sub")}</p>
@@ -196,7 +199,7 @@ const html = `
 main.innerHTML = html;
 window.FC.mountChrome("about");
 window.FC.observeReveal();
-window.FC.animateCounters();
+window.FC.boot();
 </script>
 </body>
 </html>

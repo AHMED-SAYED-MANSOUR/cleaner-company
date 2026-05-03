@@ -9,6 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <link rel="stylesheet" href="assets/home.css">
+<link rel="stylesheet" href="assets/animations.css">
+<link rel="stylesheet" href="assets/mobile-fixes.css">
 <style>
   .contact-shell {
     display: grid;
@@ -177,6 +179,7 @@
 <body>
 <script src="assets/i18n.js"></script>
 <script src="assets/components.js"></script>
+<script src="assets/animations.js"></script>
 <main id="main"></main>
 <script>
 window.FC.applyLang();
@@ -190,7 +193,7 @@ const catKeys = ["homes", "companies", "special"];
 
 main.innerHTML = `
   <section class="container page-intro">
-    <div class="reveal" style="max-width:680px">
+    <div data-anim="up" style="max-width:680px">
       <span class="eyebrow">${t("contact.eyebrow")}</span>
       <h1 style="margin-top:14px">${t("contact.title")}</h1>
       <p class="lead" style="margin-top:18px">${t("contact.sub")}</p>
@@ -198,7 +201,7 @@ main.innerHTML = `
   </section>
   <section class="container" style="padding-bottom:96px">
     <div class="contact-shell">
-      <div class="form-card reveal">
+      <div class="form-card" data-anim="up">
         <div class="stepper" id="stepper">
           ${[0,1,2].map(i => `<div class="stepper-pill ${i === 0 ? "active" : ""}"><span></span></div>`).join("")}
         </div>
@@ -302,7 +305,7 @@ main.innerHTML = `
       </div>
 
       <aside>
-        <div class="info-card reveal">
+        <div class="info-card" data-anim="up">
           <h3>${ar ? "تواصل مباشر" : "Reach us directly"}</h3>
           <div class="row">
             <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg></div>
@@ -325,7 +328,7 @@ main.innerHTML = `
             <div><div class="label">${t("contact.info.hoursT")}</div><div class="value" style="font-weight:500">${t("contact.info.hours")}</div></div>
           </div>
         </div>
-        <div class="map-card reveal">
+        <div class="map-card" data-anim="up">
           <div class="map-bg"></div>
           <div class="map-pin"><div class="pulse"></div><div class="pin"></div></div>
         </div>
@@ -336,6 +339,7 @@ main.innerHTML = `
 
 window.FC.mountChrome("contact");
 window.FC.observeReveal();
+window.FC.boot();
 
 /* multi-step form */
 let step = 0;
