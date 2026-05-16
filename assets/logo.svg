@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="fcMark" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00D4FF"></stop>
+      <stop offset="0.55" stop-color="#5BB8FF"></stop>
+      <stop offset="1" stop-color="#0A2540"></stop>
+    </linearGradient>
+    <linearGradient id="fcSpark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"></stop>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".55"></stop>
+    </linearGradient>
+  </defs>
+  
+  <path d="M32 3 L57 11 L57 30 C57 44 47 54 32 61 C17 54 7 44 7 30 L7 11 Z" fill="url(#fcMark)"></path>
+  
+  <path d="M32 17 C40 25 44 32 44 38 C44 44.6 38.6 50 32 50 C25.4 50 20 44.6 20 38 C20 32 24 25 32 17 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" stroke-width="1"></path>
+  
+  <path d="M32 25 L34 33 L42 35 L34 37 L32 45 L30 37 L22 35 L30 33 Z" fill="url(#fcSpark)"></path>
+  
+  <path d="M14 12 L32 6 L32 12 C25 14 19 18 14 24 Z" fill="rgba(255,255,255,0.18)"></path>
+</svg>

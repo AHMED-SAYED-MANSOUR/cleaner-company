@@ -458,6 +458,9 @@ window.FC.imgBase = "https://future-clean-service.com/assets/img";
 
 /* gallery for works page */
 window.FC.gallery = [
+  { cat: "glass",     src: "real/highrise.jpg",     ar: "واجهة زجاجية · ارتفاعات", en: "Glass facade · High-rise", real: true },
+  { cat: "glass",     src: "real/glass-facade.jpg", ar: "تنظيف واجهة زجاج · مبنى تجاري", en: "Glass cleaning · Commercial tower", real: true },
+  { cat: "villas",    src: "real/chairs.jpg",       ar: "تنظيف أنتريه بالبخار", en: "Upholstery steam clean", real: true },
   { cat: "villas",    src: "works/villa1.jpg", ar: "فيلا في القاهرة الجديدة", en: "Villa, New Cairo" },
   { cat: "marble",    src: "works/marble1.jpg", ar: "تلميع رخام", en: "Marble polishing" },
   { cat: "companies", src: "works/company1.jpg", ar: "تنظيف شركة", en: "Company cleaning" },
@@ -505,5 +508,6 @@ window.FC.applyLang = function () {
 };
 
 window.FC.imgUrl = function (rel) {
+  if (rel && rel.indexOf("real/") === 0) return "assets/media/" + rel;
   return window.FC.imgBase + "/" + rel;
 };

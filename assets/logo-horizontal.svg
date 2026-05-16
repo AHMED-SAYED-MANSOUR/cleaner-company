@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" fill="none">
+  <defs>
+    <linearGradient id="fcMark2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00D4FF"></stop>
+      <stop offset="0.55" stop-color="#5BB8FF"></stop>
+      <stop offset="1" stop-color="#0A2540"></stop>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0 0)">
+    <path d="M32 3 L57 11 L57 30 C57 44 47 54 32 61 C17 54 7 44 7 30 L7 11 Z" fill="url(#fcMark2)"></path>
+    <path d="M32 17 C40 25 44 32 44 38 C44 44.6 38.6 50 32 50 C25.4 50 20 44.6 20 38 C20 32 24 25 32 17 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" stroke-width="1"></path>
+    <path d="M32 25 L34 33 L42 35 L34 37 L32 45 L30 37 L22 35 L30 33 Z" fill="#fff"></path>
+  </g>
+  <g transform="translate(74 22)" fill="#0A2540">
+    <text font-family="&#39;Space Grotesk&#39;, system-ui, sans-serif" font-weight="700" font-size="22" letter-spacing="-0.5">FUTURE CLEAN</text>
+    <text y="20" font-family="&#39;Manrope&#39;, system-ui, sans-serif" font-size="11" letter-spacing="3" fill="#5B7088">PROFESSIONAL · SINCE 2018</text>
+  </g>
+</svg>
