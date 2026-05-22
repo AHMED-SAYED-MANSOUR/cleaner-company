@@ -14,7 +14,7 @@ window.FC.renderHeader = function (current) {
   return `
     <header class="site-header">
       <div class="container nav">
-        <a class="brand" href="index.html" aria-label="Future Clean Service">
+        <a class="brand" href="index.html" aria-label="Cleaner Service">
           <span class="brand-mark" aria-hidden="true">
             <img src="assets/logo.svg" alt="">
           </span>
@@ -86,7 +86,7 @@ window.FC.renderFooter = function () {
             <h4>${t("foot.follow")}</h4>
             <div class="socials">
               <a href="https://www.facebook.com/share/1HT4WYsaZH/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v8h4v-8h3l1-4h-4V9z"/></svg></a>
-              <a href="https://www.tiktok.com/@ayadala3" target="_blank" rel="noopener" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.79a8.16 8.16 0 0 0 4.77 1.52V6.86a4.85 4.85 0 0 1-1.84-.17z"/></svg></a>rcle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+              <a href="https://www.tiktok.com/@ayadala3" target="_blank" rel="noopener" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.79a8.16 8.16 0 0 0 4.77 1.52V6.86a4.85 4.85 0 0 1-1.84-.17z"/></svg></a><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
               <a href="https://wa.me/201119383646" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.4 14.3c-.2.6-1.2 1.2-1.7 1.2-.4 0-.9.2-3.2-.9-2.7-1.1-4.3-3.9-4.5-4.1-.1-.2-1-1.4-1-2.6 0-1.3.7-1.9.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 2 .8 2.1.1.2.1.3 0 .5l-.3.4c-.2.2-.3.3-.4.5-.1.2-.3.4-.1.7.2.4.9 1.5 1.9 2.4 1.3 1.1 2.4 1.5 2.7 1.6.3.1.6.1.8-.1.2-.2.9-1 1.1-1.4.2-.4.4-.3.7-.2.3.1 1.7.8 2 1 .3.1.5.2.6.3.1.2.1.8-.1 1.5z"/></svg></a>
               <a href="https://www.tiktok.com/@ayadala3" target="_blank" rel="noopener" aria-label="X" style="display:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 3h3l-7.5 8.6L22 21h-6.3l-5-6.5L4.5 21H1.5l8-9.2L1 3h6.4l4.5 6 6.1-6z"/></svg></a>
             </div>

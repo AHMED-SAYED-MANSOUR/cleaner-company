@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Future Clean Service — فيوتشر كلين سيرفيس</title>
+<title>Cleaner — كلينير</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -116,7 +116,7 @@ const heroHTML = `
               </div>
               <div class="meta">
                 <strong id="hsTitle">${ar ? "تنظيف عميق · موقع تجاري" : "Deep clean · Commercial site"}</strong>
-                <span id="hsSubtitle">${ar ? "فريق فيوتشر كلين · القاهرة" : "Future Clean crew · Cairo"}</span>
+                <span id="hsSubtitle">${ar ? "فريق كلينير · القاهرة" : "Cleaner crew · Cairo"}</span>
               </div>
             </div>
             <span class="duration" id="hsCount">1 / 6</span>
@@ -477,19 +477,19 @@ window.FC.mountChrome("home");
   const muteIcon = document.getElementById('hsMuteIcon');
   const ar = window.FC.lang === 'ar';
   const captions = ar ? [
-    {t: 'تنظيف عميق · موقع تجاري', s: 'فريق فيوتشر كلين · القاهرة'},
-    {t: 'تعقيم وتطهير · مساحة مكتبية', s: 'فريق فيوتشر كلين · القاهرة'},
-    {t: 'تنظيف شامل · بعد التشطيب', s: 'فريق فيوتشر كلين · القاهرة'},
-    {t: 'تنظيف واجهات زجاجية · ارتفاعات', s: 'فريق فيوتشر كلين · القاهرة'},
-    {t: 'تلميع رخام · خدمة فاخرة', s: 'فريق فيوتشر كلين · القاهرة'},
-    {t: 'فرش وأنتريهات · غسيل بالبخار', s: 'فريق فيوتشر كلين · القاهرة'},
+    {t: 'تنظيف عميق · موقع تجاري', s: 'فريق كلينير · القاهرة'},
+    {t: 'تعقيم وتطهير · مساحة مكتبية', s: 'فريق كلينير · القاهرة'},
+    {t: 'تنظيف شامل · بعد التشطيب', s: 'فريق كلينير · القاهرة'},
+    {t: 'تنظيف واجهات زجاجية · ارتفاعات', s: 'فريق كلينير · القاهرة'},
+    {t: 'تلميع رخام · خدمة فاخرة', s: 'فريق كلينير · القاهرة'},
+    {t: 'فرش وأنتريهات · غسيل بالبخار', s: 'فريق كلينير · القاهرة'},
   ] : [
-    {t: 'Deep clean · Commercial site', s: 'Future Clean crew · Cairo'},
-    {t: 'Disinfection · Office space', s: 'Future Clean crew · Cairo'},
-    {t: 'Post-construction clean', s: 'Future Clean crew · Cairo'},
-    {t: 'Glass facade · High-rise rope access', s: 'Future Clean crew · Cairo'},
-    {t: 'Marble polishing · Premium service', s: 'Future Clean crew · Cairo'},
-    {t: 'Upholstery · Steam wash', s: 'Future Clean crew · Cairo'},
+    {t: 'Deep clean · Commercial site', s: 'Cleaner crew · Cairo'},
+    {t: 'Disinfection · Office space', s: 'Cleaner crew · Cairo'},
+    {t: 'Post-construction clean', s: 'Cleaner crew · Cairo'},
+    {t: 'Glass facade · High-rise rope access', s: 'Cleaner crew · Cairo'},
+    {t: 'Marble polishing · Premium service', s: 'Cleaner crew · Cairo'},
+    {t: 'Upholstery · Steam wash', s: 'Cleaner crew · Cairo'},
   ];
   let idx = 0;
   const arDigits = (n) => ar ? String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[+d]) : String(n);

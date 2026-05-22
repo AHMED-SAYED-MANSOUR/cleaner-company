@@ -3,7 +3,7 @@ window.FC = window.FC || {};
 
 window.FC.i18n = {
   ar: {
-    brand: { name: "فيوتشر كلين", tag: "خدمات نظافة احترافية" },
+    brand: { name: "كلينر", tag: "خدمات نظافة احترافية" },
     nav: {
       home: "الرئيسية",
       about: "عن الشركة",
@@ -40,7 +40,7 @@ window.FC.i18n = {
       readMore: "اقرأ المزيد",
     },
     why: {
-      eyebrow: "لماذا فيوتشر كلين؟",
+      eyebrow: "لماذا كلينر؟",
       title: "لا نُقدّم خدمة تنظيف تقليدية — نُعيد تعريف النظافة",
       sub: "نعتمد على فريق مدرّب، أدوات حديثة، وحرص على التفاصيل الصغيرة التي تصنع الفارق الكبير.",
       items: [
@@ -132,7 +132,7 @@ window.FC.i18n = {
     about: {
       eyebrow: "من نحن",
       title: "خبرة في السوق المصري لأكثر من ٨ سنوات",
-      sub: "تأسست شركة فيوتشر كلينينج سيرفيس عام ٢٠١٨، وهي إحدى الشركات الرائدة في خدمات النظافة الشاملة للأفراد والشركات. نُقدّم حلول نظافة احترافية وفقًا لأعلى معايير الجودة والاحتراف، مع التزام كامل برضا العميل والدقة في التنفيذ.",
+      sub: "تأسست شركة كلينر سيرفيس عام ٢٠١٨، وهي إحدى الشركات الرائدة في خدمات النظافة الشاملة للأفراد والشركات. نُقدّم حلول نظافة احترافية وفقًا لأعلى معايير الجودة والاحتراف، مع التزام كامل برضا العميل والدقة في التنفيذ.",
       missionT: "مهمتنا",
       missionD: "تقديم خدمات نظافة موثوقة، آمنة، وصديقة للبيئة، تُحدث فرقًا حقيقيًا في حياة عملائنا اليومية.",
       visionT: "رؤيتنا",
@@ -184,17 +184,17 @@ window.FC.i18n = {
       },
     },
     foot: {
-      about: "فيوتشر كلين بخبرة أكثر من ٨ سنوات في تقديم أفضل خدمات النظافة المنزلية والمؤسسية.",
+      about: " كلينر بخبرة أكثر من ٨ سنوات في تقديم أفضل خدمات النظافة المنزلية والمؤسسية.",
       quote: "النظافة من الإيمان، والإتقان من الشرف.",
       links: "روابط هامة",
       contact: "تواصل معنا",
       follow: "تابعنا",
-      rights: "© ٢٠٢٦ فيوتشر كلين سيرفيس. جميع الحقوق محفوظة.",
+      rights: "© ٢٠٢٦ كلينر سيرفيس. جميع الحقوق محفوظة.",
     },
   },
 
   en: {
-    brand: { name: "Future Clean", tag: "Professional Cleaning Services" },
+    brand: { name: "Cleaner", tag: "Professional Cleaning Services" },
     nav: { home: "Home", about: "About", services: "Services", works: "Works", contact: "Contact" },
     cta: { call: "Call us", book: "Book a survey", quote: "Get a quote", whatsapp: "WhatsApp" },
     hero: {
@@ -225,7 +225,7 @@ window.FC.i18n = {
       readMore: "Read more",
     },
     why: {
-      eyebrow: "Why Future Clean?",
+      eyebrow: "Why Cleaner?",
       title: "We don't run a generic cleaning service — we redefine clean.",
       sub: "A trained team, modern tools, and obsession with the small details that add up to a big difference.",
       items: [
@@ -317,7 +317,7 @@ window.FC.i18n = {
     about: {
       eyebrow: "About us",
       title: "Eight years of cleaning expertise in Egypt",
-      sub: "Founded in 2018, Future Cleaning Service is one of the leading providers of comprehensive cleaning for individuals and companies. We deliver professional solutions to the highest standards of quality and craft, with full commitment to client satisfaction and execution detail.",
+      sub: "Founded in 2018, Cleaner Service is one of the leading providers of comprehensive cleaning for individuals and companies. We deliver professional solutions to the highest standards of quality and craft, with full commitment to client satisfaction and execution detail.",
       missionT: "Our mission",
       missionD: "To deliver reliable, safe and eco-conscious cleaning that makes a real difference in our clients' daily lives.",
       visionT: "Our vision",
@@ -369,12 +369,12 @@ window.FC.i18n = {
       },
     },
     foot: {
-      about: "Future Clean — 8+ years delivering the best home and corporate cleaning services.",
+      about: "Cleaner — 8+ years delivering the best home and corporate cleaning services.",
       quote: "Cleanliness is half of faith — craftsmanship is honor.",
       links: "Quick links",
       contact: "Contact",
       follow: "Follow us",
-      rights: "© 2026 Future Clean Service. All rights reserved.",
+      rights: "© 2026 Cleaner Service. All rights reserved.",
     },
   },
 };
