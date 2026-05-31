@@ -76,8 +76,17 @@ window.FC.renderFooter = function () {
           <div>
             <h4>${t("foot.contact")}</h4>
             <ul>
-              <li><a href="tel:+201119383646">+20 111 938 3646</a></li>
-              <li><a href="tel:+201040907990">+20 104 090 7990</a></li>
+              <li>
+  <a href="tel:+201119383646" dir="ltr" style="unicode-bidi:bidi-override;">
+    +20 111 938 3646
+  </a>
+</li>
+
+<li>
+  <a href="tel:+201040907990" dir="ltr" style="unicode-bidi:bidi-override;">
+    +20 104 090 7990
+  </a>
+</li>
               <li><a href="mailto:info@future-clean-service.com">info@future-clean-service.com</a></li>
               <li>${t("contact.info.address")}</li>
             </ul>

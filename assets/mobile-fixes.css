@@ -10,7 +10,7 @@
   .site-header .nav-actions > a.btn { display: none; }
   .nav-actions { gap: 8px; }
   /* Slightly tighter brand on mobile */
-  .brand-text { font-size: 15px; }
+  .brand-text { font-size: 26px; }
   .brand-text small { font-size: 10.5px; }
   .brand-mark { width: 30px; height: 30px; }
 }
