@@ -14,98 +14,192 @@
     <link rel="stylesheet" href="assets/animations.css">
     <link rel="stylesheet" href="assets/mobile-fixes.css">
     <style>
-        .svc-row {
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 56px;
-            align-items: center;
-            padding: 56px 0;
-            border-top: 1px solid var(--line);
-        }
-        .svc-row:first-of-type { border-top: none; }
-        .svc-row.flip { grid-template-columns: 1.1fr 1fr; }
-        .svc-row.flip .svc-copy { order: 2; }
-        @media (max-width: 980px) {
-            .svc-row, .svc-row.flip { grid-template-columns: 1fr; }
-            .svc-row.flip .svc-copy { order: 0; }
-        }
-        .svc-copy h2 { margin: 14px 0 16px; font-size: clamp(28px, 3.4vw, 38px); }
-        .svc-copy ul { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
-        .svc-copy li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink-2); font-size: 15px; }
-        .svc-copy li svg { flex-shrink: 0; color: var(--accent); margin-top: 4px; }
-        .svc-copy .actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
-        .svc-gallery {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 8px;
-            aspect-ratio: 4/3;
-        }
-        .svc-gallery > * {
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--bg-soft);
-            cursor: pointer;
-            position: relative;
-        }
-        .svc-gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-        .svc-gallery > *:hover img { transform: scale(1.05); }
-        .svc-gallery .main { grid-row: 1 / 3; }
-        .svc-gallery .more {
-            display: grid; place-items: center;
-            background: var(--ink); color: #fff;
-            font-weight: 600; font-size: 14px;
-        }
-        .svc-cat-header {
-            background: linear-gradient(135deg, var(--accent-soft), #f0fdf4);
-            padding: 56px 48px;
-            border-radius: var(--radius-lg);
-            margin: 64px 0 24px;
-            display: flex; justify-content: space-between; align-items: end;
-            gap: 32px;
-            flex-wrap: wrap;
-        }
-        .svc-cat-header:first-of-type { margin-top: 24px; }
-        .svc-cat-header h2 { font-size: clamp(28px, 3.6vw, 42px); }
-        .svc-cat-header .meta { color: var(--ink-3); font-size: 14px; }
+    /* ===== Service row — rich layout ===== */
+    .svc-row {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 64px;
+        align-items: center;
+        padding: 72px 0;
+        border-top: 1px solid var(--line);
+        position: relative;
+    }
+    .svc-row:first-of-type { border-top: none; }
+    .svc-row.flip { grid-template-columns: 1.15fr 1fr; }
+    .svc-row.flip .svc-copy { order: 2; }
+    @media (max-width: 980px) {
+        .svc-row, .svc-row.flip { grid-template-columns: 1fr; gap: 36px; }
+        .svc-row.flip .svc-copy { order: 0; }
+    }
 
-        /* lightbox */
-        .lightbox {
-            position: fixed; inset: 0;
-            background: rgba(11,20,16,.92);
-            display: none;
-            place-items: center;
-            z-index: 100;
-            padding: 24px;
-        }
-        .lightbox.open { display: grid; }
-        .lightbox-img {
-            max-width: min(90vw, 1100px);
-            max-height: 88vh;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-        }
-        .lightbox-close, .lb-nav {
-            position: absolute;
-            background: rgba(255,255,255,.1);
-            color: #fff;
-            width: 48px; height: 48px;
-            border-radius: 50%;
-            display: grid; place-items: center;
-            transition: background .2s;
-        }
-        .lightbox-close { top: 24px; right: 24px; }
-        .lb-prev { inset-inline-start: 24px; top: 50%; transform: translateY(-50%); }
-        .lb-next { inset-inline-end: 24px; top: 50%; transform: translateY(-50%); }
-        html[dir="rtl"] .lb-prev svg, html[dir="rtl"] .lb-next svg { transform: scaleX(-1); }
-        .lightbox-close:hover, .lb-nav:hover { background: rgba(255,255,255,.2); }
-        .lb-counter {
-            position: absolute;
-            bottom: 24px; left: 50%; transform: translateX(-50%);
-            color: #fff; font-family: var(--font-mono); font-size: 13px;
-            background: rgba(255,255,255,.1);
-            padding: 8px 16px; border-radius: var(--radius-pill);
-        }
+    /* Copy side */
+    .svc-copy { display: flex; flex-direction: column; gap: 0; }
+    .svc-copy .svc-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 16px; }
+    [data-lang="ar"] .svc-copy .svc-tag { letter-spacing: 0; text-transform: none; font-size: 13px; }
+    .svc-copy .svc-tag::before { content: ""; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; }
+    .svc-copy h2 { font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; margin: 0 0 18px; }
+    .svc-copy .svc-desc { color: var(--ink-2); font-size: 16px; line-height: 1.7; margin-bottom: 28px; }
+    .svc-copy .svc-features { list-style: none; padding: 0; margin: 0 0 32px; display: grid; gap: 12px; }
+    .svc-copy .svc-features li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; color: var(--ink-2); }
+    .svc-copy .svc-features li .fi { width: 22px; height: 22px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-ink); display: grid; place-items: center; flex-shrink: 0; margin-top: 1px; }
+    .svc-copy .svc-stats { display: flex; gap: 24px; padding: 20px 24px; background: var(--bg-soft); border-radius: var(--radius); border: 1px solid var(--line); margin-bottom: 28px; flex-wrap: wrap; }
+    .svc-copy .svc-stats .stat { display: flex; flex-direction: column; gap: 2px; }
+    .svc-copy .svc-stats .stat .v { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: -0.01em; }
+    .svc-copy .svc-stats .stat .l { font-size: 12px; color: var(--ink-3); }
+    .svc-copy .svc-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ===== Animated image showcase ===== */
+    .svc-showcase {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: var(--bg-soft);
+        box-shadow: var(--shadow-lg);
+        aspect-ratio: 4/3.4;
+        isolation: isolate;
+    }
+    /* Main large image */
+    .svc-main-img {
+        position: absolute;
+        inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: opacity .6s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+        will-change: opacity, transform;
+    }
+    .svc-main-img.hidden { opacity: 0; transform: scale(1.04); pointer-events: none; }
+    .svc-main-img.active { opacity: 1; transform: scale(1); }
+
+    /* Gradient overlay */
+    .svc-showcase::after {
+        content: "";
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, transparent 45%, rgba(11,26,20,.7) 100%);
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    /* Thumbnail strip at bottom */
+    .svc-thumbs {
+        position: absolute;
+        bottom: 16px;
+        inset-inline-start: 16px;
+        inset-inline-end: 16px;
+        display: flex;
+        gap: 8px;
+        z-index: 3;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+    .svc-thumbs::-webkit-scrollbar { display: none; }
+    .svc-thumb {
+        width: 56px; height: 42px;
+        border-radius: 8px;
+        overflow: hidden;
+        flex-shrink: 0;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: border-color .2s, transform .2s, opacity .2s;
+        opacity: .65;
+    }
+    .svc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .svc-thumb.active { border-color: var(--accent); opacity: 1; transform: translateY(-2px); }
+    .svc-thumb:hover { opacity: .9; transform: translateY(-2px); }
+
+    /* Progress bar */
+    .svc-progress {
+        position: absolute;
+        bottom: 0; inset-inline-start: 0;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 0 2px 0 0;
+        transition: width .1s linear;
+        z-index: 3;
+    }
+
+    /* Count badge top-right */
+    .svc-count-badge {
+        position: absolute;
+        top: 14px;
+        inset-inline-end: 14px;
+        background: rgba(11,26,20,.6);
+        backdrop-filter: blur(8px);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 999px;
+        z-index: 3;
+    }
+
+    /* Expand button */
+    .svc-expand-btn {
+        position: absolute;
+        top: 14px;
+        inset-inline-start: 14px;
+        width: 36px; height: 36px;
+        background: rgba(255,255,255,.92);
+        border-radius: 50%;
+        display: grid; place-items: center;
+        cursor: pointer;
+        z-index: 3;
+        transition: background .2s;
+        border: none;
+    }
+    .svc-expand-btn:hover { background: #fff; }
+
+    /* Category header */
+    .svc-cat-header {
+        background: linear-gradient(135deg, var(--accent-soft), #f0fdf4);
+        padding: 52px 48px;
+        border-radius: var(--radius-lg);
+        margin: 64px 0 24px;
+        display: flex; justify-content: space-between; align-items: end;
+        gap: 32px; flex-wrap: wrap;
+    }
+    .svc-cat-header:first-of-type { margin-top: 24px; }
+    .svc-cat-header h2 { font-size: clamp(28px, 3.6vw, 42px); margin-top: 12px; }
+    .svc-cat-header .meta { color: var(--ink-3); font-size: 14px; }
+
+    /* Lightbox */
+    .lightbox {
+        position: fixed; inset: 0;
+        background: rgba(11,20,16,.94);
+        display: none; place-items: center;
+        z-index: 100; padding: 24px;
+    }
+    .lightbox.open { display: grid; }
+    .lightbox-img {
+        max-width: min(90vw, 1100px); max-height: 88vh;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        transition: opacity .3s;
+    }
+    .lightbox-close, .lb-nav {
+        position: absolute;
+        background: rgba(255,255,255,.12); color: #fff;
+        width: 48px; height: 48px; border-radius: 50%;
+        display: grid; place-items: center;
+        transition: background .2s; border: none;
+    }
+    .lightbox-close { top: 24px; right: 24px; }
+    .lb-prev { inset-inline-start: 24px; top: 50%; transform: translateY(-50%); }
+    .lb-next { inset-inline-end: 24px; top: 50%; transform: translateY(-50%); }
+    html[dir="rtl"] .lb-prev svg, html[dir="rtl"] .lb-next svg { transform: scaleX(-1); }
+    .lightbox-close:hover, .lb-nav:hover { background: rgba(255,255,255,.22); }
+    .lb-counter {
+        position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+        color: #fff; font-size: 13px; font-weight: 600;
+        background: rgba(255,255,255,.12);
+        padding: 8px 16px; border-radius: 999px;
+    }
+
+    @media (max-width: 520px) {
+        .svc-cat-header { padding: 32px 20px; }
+        .svc-thumb { width: 44px; height: 34px; }
+        .svc-copy .svc-stats { gap: 16px; padding: 16px; }
+    }
     </style>
 </head>
 <body>
@@ -113,137 +207,271 @@
 <script src="assets/components.js"></script>
 <script src="assets/animations.js"></script>
 <main id="main"></main>
+
 <div class="lightbox" id="lightbox">
     <button class="lightbox-close" aria-label="close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <button class="lb-nav lb-prev" aria-label="prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
     <button class="lb-nav lb-next" aria-label="next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
-    <img class="lightbox-img" alt="">
-    <div class="lb-counter"></div>
+    <img class="lightbox-img" alt="" id="lbImg">
+    <div class="lb-counter" id="lbCounter"></div>
 </div>
+
 <script>
-    window.FC.applyLang();
-    const t = window.FC.t.bind(window.FC);
-    const lang = window.FC.lang;
-    const ar = lang === "ar";
-    const main = document.getElementById("main");
-    const services = window.FC.services;
-    const cats = [
-        { key: "homes", count: 8 },
-        { key: "companies", count: 8 },
-        { key: "special", count: 8 },
-    ];
+window.FC.applyLang();
+const t = window.FC.t.bind(window.FC);
+const lang = window.FC.lang;
+const ar = lang === "ar";
+const main = document.getElementById("main");
+const services = window.FC.services;
 
-    const renderRow = (catKey, s, i) => {
-        const folder = `services/${catKey}/${s.cdn}`;
-        const imgCount = s.imgCount || 8;
-        const main = `${folder}/${s.cdn}1.jpg`;
-        const t1 = `${folder}/${s.cdn}2.jpg`;
-        const allImgs = Array.from({length: imgCount}, (_, k) => `${folder}/${s.cdn}${k+1}.jpg`);
-        const moreCount = Math.max(0, imgCount - 2);
-        const features = ar
-            ? ["أدوات حديثة وآمنة", "فريق مدرّب ومنضبط", "ضمان متابعة بعد التنفيذ", "تنفيذ في الوقت المحدد"]
-            : ["Modern, safe equipment", "Trained, disciplined crew", "Post-service follow-up", "Executed on schedule"];
-        return `
-    <article class="svc-row ${i % 2 ? "flip" : ""}" id="${s.id}" data-anim="${i % 2 ? "left" : "right"}">
-      <div class="svc-copy">
-        <span class="tag dot">${ar ? `${t(`services.tabs.${catKey}`)}` : t(`services.tabs.${catKey}`)}</span>
-        <h2>${ar ? s.ar : s.en}</h2>
-        <p class="lead">${ar ? s.arDesc : s.enDesc}</p>
-        <ul>
-          ${features.map(f => `<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>${f}</li>`).join("")}
-        </ul>
-        <div class="actions">
-          <a href="contact.html" class="btn btn-primary">${ar ? "احجز هذه الخدمة" : "Book this service"} <span class="arrow">→</span></a>
-          <a href="tel:+201119383646" class="btn btn-ghost">${t("cta.call")}</a>
-        </div>
-      </div>
-      <div class="svc-gallery" data-imgs='${JSON.stringify(allImgs)}'>
-        <div class="main" data-i="0"><img src="${window.FC.imgUrl(main)}" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('ph');"></div>
-        <div data-i="1"><img src="${window.FC.imgUrl(t1)}" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('ph');"></div>
-        <div class="more" data-i="2">+${moreCount} ${ar ? "صور" : "photos"}</div>
-      </div>
-    </article>
-  `;
-    };
+const cats = [
+    { key: "homes",     count: 8 },
+    { key: "companies", count: 8 },
+    { key: "special",   count: 8 },
+];
 
-    const renderCategory = (catKey) => {
-        const items = services[catKey];
-        return `
-    <section class="container">
-      <div class="svc-cat-header" data-anim="up">
-        <div>
-          <span class="eyebrow">${t(`services.tabs.${catKey}`)}</span>
-          <h2 style="margin-top:12px">${ar
-            ? (catKey === "homes" ? "نظافة بيتك بأدق التفاصيل" : catKey === "companies" ? "حلول للشركات والمنشآت" : "خدمات متخصصة وآمنة")
-            : (catKey === "homes" ? "Home cleaning, in fine detail" : catKey === "companies" ? "Solutions for businesses & facilities" : "Specialized & safe services")
-        }</h2>
-        </div>
-        <div class="meta">${items.length} ${ar ? "خدمة" : "services"} · ${ar ? "متاحة الآن" : "available now"}</div>
-      </div>
-      ${items.map((s, i) => renderRow(catKey, s, i)).join("")}
-    </section>
-  `;
-    };
+/* Feature lists per category */
+const featuresByCategory = {
+    homes: ar
+        ? ["أدوات بخار حديثة وآمنة على الأثاث", "فريق مدرّب ومنضبط على أدق التفاصيل", "مواد تنظيف صديقة للبيئة وغير مثيرة للحساسية", "ضمان متابعة لمدة أسبوعين بعد الخدمة"]
+        : ["Modern steam equipment, fabric-safe", "Trained crew with attention to every detail", "Eco-friendly, hypoallergenic products", "Two-week follow-up guarantee"],
+    companies: ar
+        ? ["تنفيذ ليلي لا يُعيق سير العمل", "عقود شهرية وسنوية بأسعار مخصصة", "فريق مدرّب على معايير المنشآت الكبرى", "تقارير دورية وضمان الجودة"]
+        : ["Night-shift execution with zero disruption", "Monthly & annual contracts at preferred rates", "Crew trained for large-facility standards", "Regular reports and quality guarantee"],
+    special: ar
+        ? ["معدات متخصصة غير متوفرة بشكل اعتيادي", "مواد معتمدة وآمنة للصحة والبيئة", "فريق مُختبر ومتخصص لكل مهمة", "ضمان النتائج والمتابعة بعد التنفيذ"]
+        : ["Specialty equipment not available elsewhere", "Certified, health & eco-safe products", "Specialist crew matched to each task", "Results guaranteed with post-job follow-up"],
+};
 
-    main.innerHTML = `
-  <section class="container page-intro">
-    <div data-anim="up">
-      <span class="eyebrow">${t("services.eyebrow")}</span>
-      <h1 style="margin-top:14px">${t("services.title")}</h1>
-      <p class="lead" style="margin-top:18px; max-width:60ch">${t("services.sub")}</p>
+const statsArEn = {
+    homes:     ar ? [{v:"٤,٨٠٠+",l:"عميل سعيد"},{v:"٢٤/٧",l:"خدمة عملاء"},{v:"٩٩٪",l:"نسبة رضا"}] : [{v:"4,800+",l:"Happy clients"},{v:"24/7",l:"Support"},{v:"99%",l:"Satisfaction"}],
+    companies: ar ? [{v:"+١٠٠",l:"شركة شريكة"},{v:"٨+",l:"سنوات"},{v:"١٢",l:"فرع تخدمهم يوميًا"}] : [{v:"100+",l:"Partner companies"},{v:"8+",l:"Years"},{v:"12",l:"Branches served daily"}],
+    special:   ar ? [{v:"٩٩٫٩٪",l:"نسبة تعقيم"},{v:"آمن",l:"للأطفال والحيوانات"},{v:"معتمد",l:"بموافقة وزارة الصحة"}] : [{v:"99.9%",l:"Sterilization rate"},{v:"Safe",l:"For kids & pets"},{v:"Certified",l:"Health ministry approved"}],
+};
+
+const checkIcon = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+const renderRow = (catKey, s, rowIdx) => {
+    const imgCount = s.imgCount || 8;
+    const folder = `services/${catKey}/${s.cdn}`;
+    const imgs = Array.from({length: imgCount}, (_, k) => `${folder}/${s.cdn}${k+1}.jpg`);
+    const features = featuresByCategory[catKey];
+    const stats = statsArEn[catKey];
+
+    const thumbsHTML = imgs.map((src, i) => `
+        <div class="svc-thumb${i === 0 ? " active" : ""}" data-i="${i}">
+            <img src="${window.FC.imgUrl(src)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+        </div>`).join("");
+
+    const imgsHTML = imgs.map((src, i) => `
+        <img class="svc-main-img${i === 0 ? " active" : " hidden"}"
+             src="${window.FC.imgUrl(src)}" alt=""
+             data-i="${i}" loading="${i === 0 ? 'eager' : 'lazy'}"
+             onerror="this.style.display='none'">`).join("");
+
+    return `
+<article class="svc-row${rowIdx % 2 ? " flip" : ""}" id="${s.id}" data-anim="${rowIdx % 2 ? "left" : "right"}">
+  <div class="svc-copy">
+    <span class="svc-tag">${ar ? t(`services.tabs.${catKey}`) : t(`services.tabs.${catKey}`)}</span>
+    <h2>${ar ? s.ar : s.en}</h2>
+    <p class="svc-desc">${ar ? s.arDesc : s.enDesc}</p>
+    <ul class="svc-features">
+      ${features.map(f => `<li><span class="fi">${checkIcon}</span><span>${f}</span></li>`).join("")}
+    </ul>
+    <div class="svc-stats">
+      ${stats.map(st => `<div class="stat"><span class="v">${st.v}</span><span class="l">${st.l}</span></div>`).join("")}
     </div>
-  </section>
-  ${cats.map(c => renderCategory(c.key)).join("")}
-  <section class="container section-tight">
-    <div class="cta-banner" data-anim="up">
-      <div>
-        <h2 style="margin-bottom:14px">${t("bookCta.title")}</h2>
-        <p>${t("bookCta.sub")}</p>
-        <div class="row" style="margin-top:24px">
-          <a class="btn btn-accent" href="contact.html">${t("hero.ctaPrimary")} <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <div class="cta-illus">
-        <div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="label">${ar ? "+١٧ خدمة" : "17+ services"}</div><div class="sub">${ar ? "للمنازل والشركات" : "homes & businesses"}</div></div></div>
+    <div class="svc-actions">
+      <a href="contact.html" class="btn btn-primary">${ar ? "احجز هذه الخدمة" : "Book this service"} <span class="arrow">→</span></a>
+      <a href="tel:+201119383646" class="btn btn-ghost">${t("cta.call")}</a>
+    </div>
+  </div>
+
+  <div class="svc-showcase" data-imgs='${JSON.stringify(imgs)}' data-active="0">
+    ${imgsHTML}
+    <button class="svc-expand-btn" aria-label="expand" data-expand>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+    </button>
+    <div class="svc-count-badge">1 / ${imgCount}</div>
+    <div class="svc-thumbs">${thumbsHTML}</div>
+    <div class="svc-progress" style="width:0%"></div>
+  </div>
+</article>`;
+};
+
+const renderCategory = (catKey) => {
+    const items = services[catKey];
+    return `
+<section class="container">
+  <div class="svc-cat-header" data-anim="up">
+    <div>
+      <span class="eyebrow">${t(`services.tabs.${catKey}`)}</span>
+      <h2>${ar
+        ? (catKey==="homes" ? "نظافة بيتك بأدق التفاصيل" : catKey==="companies" ? "حلول للشركات والمنشآت" : "خدمات متخصصة وآمنة")
+        : (catKey==="homes" ? "Home cleaning, in fine detail" : catKey==="companies" ? "Solutions for businesses & facilities" : "Specialized & safe services")
+      }</h2>
+    </div>
+    <div class="meta">${items.length} ${ar ? "خدمة" : "services"} · ${ar ? "متاحة الآن" : "available now"}</div>
+  </div>
+  ${items.map((s, i) => renderRow(catKey, s, i)).join("")}
+</section>`;
+};
+
+main.innerHTML = `
+<section class="container page-intro">
+  <div data-anim="up">
+    <span class="eyebrow">${t("services.eyebrow")}</span>
+    <h1 style="margin-top:14px">${t("services.title")}</h1>
+    <p class="lead" style="margin-top:18px; max-width:60ch">${t("services.sub")}</p>
+  </div>
+</section>
+${cats.map(c => renderCategory(c.key)).join("")}
+<section class="container section-tight">
+  <div class="cta-banner" data-anim="up">
+    <div>
+      <h2 style="margin-bottom:14px">${t("bookCta.title")}</h2>
+      <p>${t("bookCta.sub")}</p>
+      <div class="row" style="margin-top:24px">
+        <a class="btn btn-accent" href="contact.html">${t("hero.ctaPrimary")} <span class="arrow">→</span></a>
       </div>
     </div>
-  </section>
-`;
+    <div class="cta-illus">
+      <div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="label">${ar ? "+١٧ خدمة" : "17+ services"}</div><div class="sub">${ar ? "للمنازل والشركات" : "homes & businesses"}</div></div></div>
+      <div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="label">${ar ? "ضمان متابعة" : "Follow-up guarantee"}</div><div class="sub">${ar ? "أسبوعان مجانًا" : "Two weeks free"}</div></div></div>
+    </div>
+  </div>
+</section>`;
 
-    window.FC.mountChrome("services");
-    window.FC.observeReveal();
-    window.FC.boot();
+window.FC.mountChrome("services");
+window.FC.observeReveal();
+window.FC.boot();
 
-    /* lightbox */
+/* ===== Showcase auto-slideshow + thumbnail interaction ===== */
+(function () {
+    const INTERVAL = 3500;  // ms per slide
+    const TRANSITION = 600; // ms fade
+
+    document.querySelectorAll(".svc-showcase").forEach(showcase => {
+        const imgs = showcase.querySelectorAll(".svc-main-img");
+        const thumbs = showcase.querySelectorAll(".svc-thumb");
+        const progress = showcase.querySelector(".svc-progress");
+        const badge = showcase.querySelector(".svc-count-badge");
+        const total = imgs.length;
+        let current = 0;
+        let timer = null;
+        let progTimer = null;
+        let progStart = null;
+
+        const goTo = (idx, resetTimer = true) => {
+            if (idx === current) return;
+            imgs[current].classList.remove("active");
+            imgs[current].classList.add("hidden");
+            thumbs[current]?.classList.remove("active");
+
+            current = (idx + total) % total;
+
+            imgs[current].classList.remove("hidden");
+            imgs[current].classList.add("active");
+            thumbs[current]?.classList.add("active");
+            if (badge) badge.textContent = `${current + 1} / ${total}`;
+            showcase.dataset.active = current;
+
+            // Scroll active thumb into view
+            thumbs[current]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+
+            if (resetTimer) startAuto();
+        };
+
+        const startProgress = () => {
+            if (progress) {
+                clearInterval(progTimer);
+                progress.style.transition = "none";
+                progress.style.width = "0%";
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        progress.style.transition = `width ${INTERVAL}ms linear`;
+                        progress.style.width = "100%";
+                    });
+                });
+            }
+        };
+
+        const startAuto = () => {
+            clearTimeout(timer);
+            startProgress();
+            timer = setTimeout(() => {
+                goTo(current + 1, false);
+                startAuto();
+            }, INTERVAL);
+        };
+
+        // Thumb clicks
+        thumbs.forEach(th => {
+            th.addEventListener("click", () => goTo(parseInt(th.dataset.i)));
+        });
+
+        // Touch swipe
+        let touchX = 0;
+        showcase.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+        showcase.addEventListener("touchend", e => {
+            const dx = e.changedTouches[0].clientX - touchX;
+            const rtl = document.documentElement.dir === "rtl";
+            if (Math.abs(dx) > 50) {
+                goTo(current + ((dx < 0) !== rtl ? 1 : -1));
+            }
+        });
+
+        startAuto();
+    });
+
+    /* ===== Lightbox ===== */
     const lb = document.getElementById("lightbox");
-    const lbImg = lb.querySelector(".lightbox-img");
-    const lbCounter = lb.querySelector(".lb-counter");
-    let curList = [], curIdx = 0;
-    const renderLB = () => {
-        lbImg.src = window.FC.imgUrl(curList[curIdx]);
-        lbCounter.textContent = `${curIdx + 1} / ${curList.length}`;
-    };
-    const open = (list, i) => {
-        curList = list; curIdx = i;
+    const lbImg = document.getElementById("lbImg");
+    const lbCounter = document.getElementById("lbCounter");
+    let lbList = [], lbIdx = 0;
+
+    const openLB = (list, i) => {
+        lbList = list; lbIdx = i;
         lb.classList.add("open");
         renderLB();
     };
-    lb.addEventListener("click", (e) => { if (e.target === lb) lb.classList.remove("open"); });
+    const renderLB = () => {
+        lbImg.style.opacity = "0";
+        lbImg.src = window.FC.imgUrl(lbList[lbIdx]);
+        lbImg.onload = () => { lbImg.style.opacity = "1"; };
+        lbCounter.textContent = `${lbIdx + 1} / ${lbList.length}`;
+    };
+    lb.addEventListener("click", e => { if (e.target === lb) lb.classList.remove("open"); });
     lb.querySelector(".lightbox-close").addEventListener("click", () => lb.classList.remove("open"));
-    lb.querySelector(".lb-prev").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); });
-    lb.querySelector(".lb-next").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx + 1) % curList.length; renderLB(); });
-    document.addEventListener("keydown", (e) => {
+    lb.querySelector(".lb-prev").addEventListener("click", e => { e.stopPropagation(); lbIdx = (lbIdx - 1 + lbList.length) % lbList.length; renderLB(); });
+    lb.querySelector(".lb-next").addEventListener("click", e => { e.stopPropagation(); lbIdx = (lbIdx + 1) % lbList.length; renderLB(); });
+    document.addEventListener("keydown", e => {
         if (!lb.classList.contains("open")) return;
         if (e.key === "Escape") lb.classList.remove("open");
-        if (e.key === "ArrowLeft") { curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); }
-        if (e.key === "ArrowRight") { curIdx = (curIdx + 1) % curList.length; renderLB(); }
+        if (e.key === "ArrowLeft")  { lbIdx = (lbIdx - 1 + lbList.length) % lbList.length; renderLB(); }
+        if (e.key === "ArrowRight") { lbIdx = (lbIdx + 1) % lbList.length; renderLB(); }
     });
-    document.querySelectorAll(".svc-gallery").forEach(g => {
-        const list = JSON.parse(g.dataset.imgs);
-        g.querySelectorAll("[data-i]").forEach(cell => {
-            cell.addEventListener("click", () => open(list, parseInt(cell.dataset.i, 10)));
+
+    // Expand buttons open lightbox
+    document.querySelectorAll(".svc-expand-btn[data-expand]").forEach(btn => {
+        const showcase = btn.closest(".svc-showcase");
+        const list = JSON.parse(showcase.dataset.imgs);
+        btn.addEventListener("click", () => {
+            const current = parseInt(showcase.dataset.active || "0");
+            openLB(list, current);
         });
     });
+
+    // Also click on main image area to expand
+    document.querySelectorAll(".svc-showcase").forEach(showcase => {
+        showcase.addEventListener("click", e => {
+            if (e.target.closest(".svc-thumbs") || e.target.closest(".svc-expand-btn")) return;
+            const list = JSON.parse(showcase.dataset.imgs);
+            const current = parseInt(showcase.dataset.active || "0");
+            openLB(list, current);
+        });
+    });
+})();
 </script>
 </body>
 </html>
