@@ -450,6 +450,35 @@ window.FC.services = {
       arDesc: "القضاء على الحشرات بمبيدات آمنة معتمدة، حماية طويلة دون أذى للسكان.",
       enDesc: "Safe, certified pesticides eliminate pests with long-term protection — household-safe.",
       cdn: "pest_control" },
+      {
+          id: "landscape",
+          ar: "تنسيق وصيانة الحدائق",
+          en: "Landscape & Garden Maintenance",
+          arDesc: "تنسيق الحدائق وصيانة المساحات الخضراء وقص الأشجار والعناية بالنباتات.",
+          enDesc: "Professional landscaping, lawn care, tree trimming and outdoor maintenance services.",
+          cdn: "ls",
+          imgCount: 5
+      },
+
+      {
+          id: "hood_cleaning",
+          ar: "تنظيف شفاطات المطابخ والمداخن",
+          en: "Kitchen Hood Cleaning",
+          arDesc: "تنظيف الشفاطات ومجاري الهواء وإزالة الدهون المتراكمة للحفاظ على السلامة والكفاءة.",
+          enDesc: "Deep cleaning of kitchen hoods, ducts and exhaust systems to improve safety and efficiency.",
+          cdn: "hood-cleaning",
+          imgCount: 5
+      },
+
+      {
+          id: "closed_spaces",
+          ar: "تنظيف وتعقيم الأماكن المغلقة",
+          en: "Closed Spaces Cleaning",
+          arDesc: "تنظيف وتعقيم المخازن والأماكن المغلقة والمساحات محدودة التهوية بمعدات متخصصة.",
+          enDesc: "Professional cleaning and disinfection for warehouses, confined spaces and poorly ventilated areas.",
+          cdn: "closed-spaces",
+          imgCount: 5
+      }
   ],
 };
 
@@ -479,6 +508,14 @@ window.FC.gallery = [
   { cat: "special",   src: "services/special/pest_control/pest_control2.jpg", ar: "مكافحة حشرات", en: "Pest control" },
   { cat: "companies", src: "services/companies/tank/tank2.jpg", ar: "خزان مياه", en: "Water tank" },
   { cat: "villas",    src: "services/homes/carpet/carpet3.jpg", ar: "سجاد", en: "Carpet" },
+    { cat: "special", src: "services/special/ls/ls1.jpg", ar: "تنسيق الحدائق", en: "Landscape Service" },
+    { cat: "special", src: "services/special/ls/ls2.jpg", ar: "صيانة الحدائق", en: "Garden Maintenance" },
+    { cat: "special", src: "services/special/hood-cleaning/hood-cleaning1.jpg", ar: "تنظيف شفاطات المطابخ", en: "Kitchen Hood Cleaning" },
+    { cat: "special", src: "services/special/hood-cleaning/hood-cleaning2.jpg", ar: "تنظيف مجاري الهواء", en: "Exhaust System Cleaning" },
+    { cat: "special", src: "services/special/hood-cleaning/hood-cleaning3.jpg", ar: "إزالة الدهون", en: "Grease Removal" },
+    { cat: "special", src: "services/special/closed-spaces/closed-spaces1.jpg", ar: "تنظيف الأماكن المغلقة", en: "Closed Spaces Cleaning" },
+    { cat: "special", src: "services/special/closed-spaces/closed-spaces2.jpg", ar: "تعقيم المخازن", en: "Warehouse Disinfection" },
+    { cat: "special", src: "services/special/closed-spaces/closed-spaces3.jpg", ar: "تنظيف المساحات محدودة التهوية", en: "Confined Space Cleaning" }
 ];
 
 /* ---------- runtime ---------- */
@@ -508,6 +545,8 @@ window.FC.applyLang = function () {
 };
 
 window.FC.imgUrl = function (rel) {
-  if (rel && rel.indexOf("real/") === 0) return "assets/media/" + rel;
+  if (!rel) return "";
+  if (rel.indexOf("real/") === 0) return "assets/media/" + rel;
+  if (rel.indexOf("services/special/") === 0) return "assets/" + rel;
   return window.FC.imgBase + "/" + rel;
 };

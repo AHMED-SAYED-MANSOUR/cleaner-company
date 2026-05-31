@@ -135,10 +135,11 @@ const cats = [
 
 const renderRow = (catKey, s, i) => {
   const folder = `services/${catKey}/${s.cdn}`;
+  const imgCount = s.imgCount || 8;
   const main = `${folder}/${s.cdn}1.jpg`;
   const t1 = `${folder}/${s.cdn}2.jpg`;
-  const t2 = `${folder}/${s.cdn}3.jpg`;
-  const allImgs = Array.from({length: 8}, (_, k) => `${folder}/${s.cdn}${k+1}.jpg`);
+  const allImgs = Array.from({length: imgCount}, (_, k) => `${folder}/${s.cdn}${k+1}.jpg`);
+  const moreCount = Math.max(0, imgCount - 2);
   const features = ar
     ? ["أدوات حديثة وآمنة", "فريق مدرّب ومنضبط", "ضمان متابعة بعد التنفيذ", "تنفيذ في الوقت المحدد"]
     : ["Modern, safe equipment", "Trained, disciplined crew", "Post-service follow-up", "Executed on schedule"];
@@ -159,7 +160,7 @@ const renderRow = (catKey, s, i) => {
       <div class="svc-gallery" data-imgs='${JSON.stringify(allImgs)}'>
         <div class="main" data-i="0"><img src="${window.FC.imgUrl(main)}" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('ph');"></div>
         <div data-i="1"><img src="${window.FC.imgUrl(t1)}" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('ph');"></div>
-        <div class="more" data-i="2">+${5} ${ar ? "صور" : "photos"}</div>
+        <div class="more" data-i="2">+${moreCount} ${ar ? "صور" : "photos"}</div>
       </div>
     </article>
   `;
