@@ -1,112 +1,112 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>خدماتنا — Cleaner</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
-  <link rel="stylesheet" href="assets/3d.css">
-  <link rel="stylesheet" href="assets/sections.css">
-<link rel="stylesheet" href="assets/home.css">
-<link rel="stylesheet" href="assets/animations.css">
-<link rel="stylesheet" href="assets/mobile-fixes.css">
-<style>
-  .svc-row {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 56px;
-    align-items: center;
-    padding: 56px 0;
-    border-top: 1px solid var(--line);
-  }
-  .svc-row:first-of-type { border-top: none; }
-  .svc-row.flip { grid-template-columns: 1.1fr 1fr; }
-  .svc-row.flip .svc-copy { order: 2; }
-  @media (max-width: 980px) {
-    .svc-row, .svc-row.flip { grid-template-columns: 1fr; }
-    .svc-row.flip .svc-copy { order: 0; }
-  }
-  .svc-copy h2 { margin: 14px 0 16px; font-size: clamp(28px, 3.4vw, 38px); }
-  .svc-copy ul { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
-  .svc-copy li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink-2); font-size: 15px; }
-  .svc-copy li svg { flex-shrink: 0; color: var(--accent); margin-top: 4px; }
-  .svc-copy .actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
-  .svc-gallery {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 8px;
-    aspect-ratio: 4/3;
-  }
-  .svc-gallery > * {
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--bg-soft);
-    cursor: pointer;
-    position: relative;
-  }
-  .svc-gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-  .svc-gallery > *:hover img { transform: scale(1.05); }
-  .svc-gallery .main { grid-row: 1 / 3; }
-  .svc-gallery .more {
-    display: grid; place-items: center;
-    background: var(--ink); color: #fff;
-    font-weight: 600; font-size: 14px;
-  }
-  .svc-cat-header {
-    background: linear-gradient(135deg, var(--accent-soft), #f0fdf4);
-    padding: 56px 48px;
-    border-radius: var(--radius-lg);
-    margin: 64px 0 24px;
-    display: flex; justify-content: space-between; align-items: end;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .svc-cat-header:first-of-type { margin-top: 24px; }
-  .svc-cat-header h2 { font-size: clamp(28px, 3.6vw, 42px); }
-  .svc-cat-header .meta { color: var(--ink-3); font-size: 14px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدماتنا — Cleaner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/3d.css">
+    <link rel="stylesheet" href="assets/sections.css">
+    <link rel="stylesheet" href="assets/home.css">
+    <link rel="stylesheet" href="assets/animations.css">
+    <link rel="stylesheet" href="assets/mobile-fixes.css">
+    <style>
+        .svc-row {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 56px;
+            align-items: center;
+            padding: 56px 0;
+            border-top: 1px solid var(--line);
+        }
+        .svc-row:first-of-type { border-top: none; }
+        .svc-row.flip { grid-template-columns: 1.1fr 1fr; }
+        .svc-row.flip .svc-copy { order: 2; }
+        @media (max-width: 980px) {
+            .svc-row, .svc-row.flip { grid-template-columns: 1fr; }
+            .svc-row.flip .svc-copy { order: 0; }
+        }
+        .svc-copy h2 { margin: 14px 0 16px; font-size: clamp(28px, 3.4vw, 38px); }
+        .svc-copy ul { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
+        .svc-copy li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink-2); font-size: 15px; }
+        .svc-copy li svg { flex-shrink: 0; color: var(--accent); margin-top: 4px; }
+        .svc-copy .actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+        .svc-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 8px;
+            aspect-ratio: 4/3;
+        }
+        .svc-gallery > * {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--bg-soft);
+            cursor: pointer;
+            position: relative;
+        }
+        .svc-gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+        .svc-gallery > *:hover img { transform: scale(1.05); }
+        .svc-gallery .main { grid-row: 1 / 3; }
+        .svc-gallery .more {
+            display: grid; place-items: center;
+            background: var(--ink); color: #fff;
+            font-weight: 600; font-size: 14px;
+        }
+        .svc-cat-header {
+            background: linear-gradient(135deg, var(--accent-soft), #f0fdf4);
+            padding: 56px 48px;
+            border-radius: var(--radius-lg);
+            margin: 64px 0 24px;
+            display: flex; justify-content: space-between; align-items: end;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .svc-cat-header:first-of-type { margin-top: 24px; }
+        .svc-cat-header h2 { font-size: clamp(28px, 3.6vw, 42px); }
+        .svc-cat-header .meta { color: var(--ink-3); font-size: 14px; }
 
-  /* lightbox */
-  .lightbox {
-    position: fixed; inset: 0;
-    background: rgba(11,20,16,.92);
-    display: none;
-    place-items: center;
-    z-index: 100;
-    padding: 24px;
-  }
-  .lightbox.open { display: grid; }
-  .lightbox-img {
-    max-width: min(90vw, 1100px);
-    max-height: 88vh;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-  }
-  .lightbox-close, .lb-nav {
-    position: absolute;
-    background: rgba(255,255,255,.1);
-    color: #fff;
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    display: grid; place-items: center;
-    transition: background .2s;
-  }
-  .lightbox-close { top: 24px; right: 24px; }
-  .lb-prev { inset-inline-start: 24px; top: 50%; transform: translateY(-50%); }
-  .lb-next { inset-inline-end: 24px; top: 50%; transform: translateY(-50%); }
-  html[dir="rtl"] .lb-prev svg, html[dir="rtl"] .lb-next svg { transform: scaleX(-1); }
-  .lightbox-close:hover, .lb-nav:hover { background: rgba(255,255,255,.2); }
-  .lb-counter {
-    position: absolute;
-    bottom: 24px; left: 50%; transform: translateX(-50%);
-    color: #fff; font-family: var(--font-mono); font-size: 13px;
-    background: rgba(255,255,255,.1);
-    padding: 8px 16px; border-radius: var(--radius-pill);
-  }
-</style>
+        /* lightbox */
+        .lightbox {
+            position: fixed; inset: 0;
+            background: rgba(11,20,16,.92);
+            display: none;
+            place-items: center;
+            z-index: 100;
+            padding: 24px;
+        }
+        .lightbox.open { display: grid; }
+        .lightbox-img {
+            max-width: min(90vw, 1100px);
+            max-height: 88vh;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+        .lightbox-close, .lb-nav {
+            position: absolute;
+            background: rgba(255,255,255,.1);
+            color: #fff;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            display: grid; place-items: center;
+            transition: background .2s;
+        }
+        .lightbox-close { top: 24px; right: 24px; }
+        .lb-prev { inset-inline-start: 24px; top: 50%; transform: translateY(-50%); }
+        .lb-next { inset-inline-end: 24px; top: 50%; transform: translateY(-50%); }
+        html[dir="rtl"] .lb-prev svg, html[dir="rtl"] .lb-next svg { transform: scaleX(-1); }
+        .lightbox-close:hover, .lb-nav:hover { background: rgba(255,255,255,.2); }
+        .lb-counter {
+            position: absolute;
+            bottom: 24px; left: 50%; transform: translateX(-50%);
+            color: #fff; font-family: var(--font-mono); font-size: 13px;
+            background: rgba(255,255,255,.1);
+            padding: 8px 16px; border-radius: var(--radius-pill);
+        }
+    </style>
 </head>
 <body>
 <script src="assets/i18n.js"></script>
@@ -114,36 +114,36 @@
 <script src="assets/animations.js"></script>
 <main id="main"></main>
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" aria-label="close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-  <button class="lb-nav lb-prev" aria-label="prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
-  <button class="lb-nav lb-next" aria-label="next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
-  <img class="lightbox-img" alt="">
-  <div class="lb-counter"></div>
+    <button class="lightbox-close" aria-label="close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="lb-nav lb-prev" aria-label="prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="lb-nav lb-next" aria-label="next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <img class="lightbox-img" alt="">
+    <div class="lb-counter"></div>
 </div>
 <script>
-window.FC.applyLang();
-const t = window.FC.t.bind(window.FC);
-const lang = window.FC.lang;
-const ar = lang === "ar";
-const main = document.getElementById("main");
-const services = window.FC.services;
-const cats = [
-  { key: "homes", count: 8 },
-  { key: "companies", count: 8 },
-  { key: "special", count: 8 },
-];
+    window.FC.applyLang();
+    const t = window.FC.t.bind(window.FC);
+    const lang = window.FC.lang;
+    const ar = lang === "ar";
+    const main = document.getElementById("main");
+    const services = window.FC.services;
+    const cats = [
+        { key: "homes", count: 8 },
+        { key: "companies", count: 8 },
+        { key: "special", count: 8 },
+    ];
 
-const renderRow = (catKey, s, i) => {
-  const folder = `services/${catKey}/${s.cdn}`;
-  const imgCount = s.imgCount || 8;
-  const main = `${folder}/${s.cdn}1.jpg`;
-  const t1 = `${folder}/${s.cdn}2.jpg`;
-  const allImgs = Array.from({length: imgCount}, (_, k) => `${folder}/${s.cdn}${k+1}.jpg`);
-  const moreCount = Math.max(0, imgCount - 2);
-  const features = ar
-    ? ["أدوات حديثة وآمنة", "فريق مدرّب ومنضبط", "ضمان متابعة بعد التنفيذ", "تنفيذ في الوقت المحدد"]
-    : ["Modern, safe equipment", "Trained, disciplined crew", "Post-service follow-up", "Executed on schedule"];
-  return `
+    const renderRow = (catKey, s, i) => {
+        const folder = `services/${catKey}/${s.cdn}`;
+        const imgCount = s.imgCount || 8;
+        const main = `${folder}/${s.cdn}1.jpg`;
+        const t1 = `${folder}/${s.cdn}2.jpg`;
+        const allImgs = Array.from({length: imgCount}, (_, k) => `${folder}/${s.cdn}${k+1}.jpg`);
+        const moreCount = Math.max(0, imgCount - 2);
+        const features = ar
+            ? ["أدوات حديثة وآمنة", "فريق مدرّب ومنضبط", "ضمان متابعة بعد التنفيذ", "تنفيذ في الوقت المحدد"]
+            : ["Modern, safe equipment", "Trained, disciplined crew", "Post-service follow-up", "Executed on schedule"];
+        return `
     <article class="svc-row ${i % 2 ? "flip" : ""}" id="${s.id}" data-anim="${i % 2 ? "left" : "right"}">
       <div class="svc-copy">
         <span class="tag dot">${ar ? `${t(`services.tabs.${catKey}`)}` : t(`services.tabs.${catKey}`)}</span>
@@ -164,11 +164,11 @@ const renderRow = (catKey, s, i) => {
       </div>
     </article>
   `;
-};
+    };
 
-const renderCategory = (catKey) => {
-  const items = services[catKey];
-  return `
+    const renderCategory = (catKey) => {
+        const items = services[catKey];
+        return `
     <section class="container">
       <div class="svc-cat-header" data-anim="up">
         <div>
@@ -176,16 +176,16 @@ const renderCategory = (catKey) => {
           <h2 style="margin-top:12px">${ar
             ? (catKey === "homes" ? "نظافة بيتك بأدق التفاصيل" : catKey === "companies" ? "حلول للشركات والمنشآت" : "خدمات متخصصة وآمنة")
             : (catKey === "homes" ? "Home cleaning, in fine detail" : catKey === "companies" ? "Solutions for businesses & facilities" : "Specialized & safe services")
-          }</h2>
+        }</h2>
         </div>
         <div class="meta">${items.length} ${ar ? "خدمة" : "services"} · ${ar ? "متاحة الآن" : "available now"}</div>
       </div>
       ${items.map((s, i) => renderRow(catKey, s, i)).join("")}
     </section>
   `;
-};
+    };
 
-main.innerHTML = `
+    main.innerHTML = `
   <section class="container page-intro">
     <div data-anim="up">
       <span class="eyebrow">${t("services.eyebrow")}</span>
@@ -210,40 +210,40 @@ main.innerHTML = `
   </section>
 `;
 
-window.FC.mountChrome("services");
-window.FC.observeReveal();
-window.FC.boot();
+    window.FC.mountChrome("services");
+    window.FC.observeReveal();
+    window.FC.boot();
 
-/* lightbox */
-const lb = document.getElementById("lightbox");
-const lbImg = lb.querySelector(".lightbox-img");
-const lbCounter = lb.querySelector(".lb-counter");
-let curList = [], curIdx = 0;
-const renderLB = () => {
-  lbImg.src = window.FC.imgUrl(curList[curIdx]);
-  lbCounter.textContent = `${curIdx + 1} / ${curList.length}`;
-};
-const open = (list, i) => {
-  curList = list; curIdx = i;
-  lb.classList.add("open");
-  renderLB();
-};
-lb.addEventListener("click", (e) => { if (e.target === lb) lb.classList.remove("open"); });
-lb.querySelector(".lightbox-close").addEventListener("click", () => lb.classList.remove("open"));
-lb.querySelector(".lb-prev").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); });
-lb.querySelector(".lb-next").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx + 1) % curList.length; renderLB(); });
-document.addEventListener("keydown", (e) => {
-  if (!lb.classList.contains("open")) return;
-  if (e.key === "Escape") lb.classList.remove("open");
-  if (e.key === "ArrowLeft") { curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); }
-  if (e.key === "ArrowRight") { curIdx = (curIdx + 1) % curList.length; renderLB(); }
-});
-document.querySelectorAll(".svc-gallery").forEach(g => {
-  const list = JSON.parse(g.dataset.imgs);
-  g.querySelectorAll("[data-i]").forEach(cell => {
-    cell.addEventListener("click", () => open(list, parseInt(cell.dataset.i, 10)));
-  });
-});
+    /* lightbox */
+    const lb = document.getElementById("lightbox");
+    const lbImg = lb.querySelector(".lightbox-img");
+    const lbCounter = lb.querySelector(".lb-counter");
+    let curList = [], curIdx = 0;
+    const renderLB = () => {
+        lbImg.src = window.FC.imgUrl(curList[curIdx]);
+        lbCounter.textContent = `${curIdx + 1} / ${curList.length}`;
+    };
+    const open = (list, i) => {
+        curList = list; curIdx = i;
+        lb.classList.add("open");
+        renderLB();
+    };
+    lb.addEventListener("click", (e) => { if (e.target === lb) lb.classList.remove("open"); });
+    lb.querySelector(".lightbox-close").addEventListener("click", () => lb.classList.remove("open"));
+    lb.querySelector(".lb-prev").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); });
+    lb.querySelector(".lb-next").addEventListener("click", (e) => { e.stopPropagation(); curIdx = (curIdx + 1) % curList.length; renderLB(); });
+    document.addEventListener("keydown", (e) => {
+        if (!lb.classList.contains("open")) return;
+        if (e.key === "Escape") lb.classList.remove("open");
+        if (e.key === "ArrowLeft") { curIdx = (curIdx - 1 + curList.length) % curList.length; renderLB(); }
+        if (e.key === "ArrowRight") { curIdx = (curIdx + 1) % curList.length; renderLB(); }
+    });
+    document.querySelectorAll(".svc-gallery").forEach(g => {
+        const list = JSON.parse(g.dataset.imgs);
+        g.querySelectorAll("[data-i]").forEach(cell => {
+            cell.addEventListener("click", () => open(list, parseInt(cell.dataset.i, 10)));
+        });
+    });
 </script>
 </body>
 </html>
